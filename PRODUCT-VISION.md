@@ -44,3 +44,6 @@ Als ontwikkelaar wil ik dat de AI zelfstandig een pull request aanmaakt wanneer 
 
 ### User Story 3
 Als team wil ik dat de AI samenvat wat er de afgelopen tijd is gebeurd, zodat iedereen snel weer context heeft zonder lange teruglezen.
+
+## Extra
+Het idee is dat de AI zo simpel mogelijk is om te gebruiken, dus minder technische woorden in dingen zoals de UI.
