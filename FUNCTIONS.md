@@ -11,4 +11,4 @@
 11. Asana
 12. Notion
 
-ER KOMEN NOG MEER FUNCTIES
+![Uitleg Schema](Schema.png)

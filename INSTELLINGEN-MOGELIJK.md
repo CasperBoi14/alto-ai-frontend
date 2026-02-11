@@ -47,4 +47,4 @@ Welke paginas gezien mogen?
 Toevoegen toegstaaan? (Ja/nee)
 Verwijderen mogelijk? (Ja/nee)
 
-ER KOMEN NOG MEER FUNCTIES
+![Uitleg Schema](Schema.png)
