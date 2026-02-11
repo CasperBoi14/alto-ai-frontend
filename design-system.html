@@ -419,6 +419,9 @@
 
         .checkbox {
             border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .radio {
@@ -438,10 +441,8 @@
             height: 0.5rem;
             border: solid var(--primary-foreground);
             border-width: 0 2px 2px 0;
-            transform: rotate(45deg) translate(-50%, -50%);
-            position: relative;
-            left: 50%;
-            top: 40%;
+            transform: rotate(45deg);
+            margin-top: -2px;
         }
 
         .radio:checked::after {
@@ -490,6 +491,7 @@
 
         .switch input:checked + .switch-slider {
             transform: translateX(1rem);
+            background: var(--primary-foreground);
         }
 
         .switch input:checked ~ .switch {
@@ -655,9 +657,14 @@
 
         .alert-icon {
             flex-shrink: 0;
-            width: 1rem;
-            height: 1rem;
+            width: 1.25rem;
+            height: 1.25rem;
             margin-top: 0.125rem;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
         }
 
         .alert-content {
