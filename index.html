@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alto AI - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Using a simple icon set placeholder since we can't load external resources easily without CDN blocks in some environments, but assuming standard SVG usage -->
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon"></div>
+                <span>Alto AI</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-item active">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    Dashboard
+                </a>
+                <a href="#communication" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    Communication
+                </a>
+                <a href="#projects" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                    Tasks & Projects
+                </a>
+                <a href="#development" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    Development
+                </a>
+                <a href="#knowledge" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Knowledge & Files
+                </a>
+                <a href="#tools" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Tools & Search
+                </a>
+                <a href="#settings" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    Settings (UI Demo)
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section section-content">
+                <header class="section-header mb-4">
+                    <h1>Welcome home</h1>
+                    <p class="section-description">Overview of active agents and recent activities.</p>
+                </header>
+
+                <div class="component-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">System Status</h3>
+                            <p class="card-description">Current operational state</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></div>
+                                <span style="font-weight: 500;">Operational</span>
+                            </div>
+                            <button class="btn btn-secondary w-full">View Logs</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Memory Usage</h3>
+                            <p class="card-description">Vector database status</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-xs text-muted">Capacity</span>
+                                <span class="text-xs">45%</span>
+                            </div>
+                            <div style="width: 100%; height: 4px; background: var(--secondary); border-radius: 99px;">
+                                <div style="width: 45%; height: 100%; background: var(--foreground); border-radius: 99px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Active Integrations</h3>
+                            <p class="card-description">Connected services</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex gap-2">
+                                <span class="badge badge-secondary">Discord</span>
+                                <span class="badge badge-secondary">GitHub</span>
+                                <span class="badge badge-secondary">Trello</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Communication Section -->
+            <section id="communication" class="section section-content hidden">
+                <header class="section-header mb-4">
+                    <h1>Communication</h1>
+                    <p class="section-description">Manage chat platforms and interaction rules.</p>
+                </header>
+
+                <div class="component-grid">
+                    <!-- Discord -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Discord Integration</h3>
+                                <p class="card-description">Configure bot behavior in Discord</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Allowed Serves / Channels</label>
+                                <input type="text" class="input" placeholder="e.g. #general, #dev-team, 987654321">
+                                <p class="form-hint">Comma separated list of channel IDs or names.</p>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="form-group w-full">
+                                    <label class="label">Authorized Users</label>
+                                    <input type="text" class="input" placeholder="@user, role:admin">
+                                </div>
+                                <div class="form-group w-full">
+                                    <label class="label">Reply Cooldown (seconds)</label>
+                                    <input type="number" class="input" value="5">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between mt-4 p-4" style="background: var(--secondary); border-radius: var(--radius);">
+                                <div>
+                                    <span class="label mb-0">Allow @everyone mention</span>
+                                    <span class="text-xs text-muted">Bot can tag everyone in urgent cases</span>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slack -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Slack</h3>
+                                <p class="card-description">Enterprise communication</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <div class="alert alert-info" style="border: 1px solid var(--border); background: var(--secondary);">
+                                <div class="alert-content">
+                                    <p class="alert-title">Configuration needed</p>
+                                    <p class="alert-description">Slack integration details are currently being researched.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks & Projects Section -->
+            <section id="projects" class="section section-content hidden">
+                <header class="section-header mb-4">
+                    <h1>Tasks & Projects</h1>
+                    <p class="section-description">Task management and board settings.</p>
+                </header>
+
+                <div class="component-grid">
+                    <!-- Trello -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Trello</h3>
+                                <p class="card-description">Kanban board management</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Primary Boards</label>
+                                <input type="text" class="input" placeholder="Select boards...">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Monitored Lists</label>
+                                <input type="text" class="input" placeholder="To Do, In Progress">
+                            </div>
+                            <div class="flex flex-col gap-2 mt-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="label" style="margin:0;">Allow Card Deletion</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="switch-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="separator"></div>
+                                <div class="flex justify-between items-center">
+                                    <span class="label" style="margin:0;">Allow Card Edits</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="switch-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Linear -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Linear</h3>
+                                <p class="card-description">Issue tracking</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <button class="btn btn-outline w-full text-center justify-center">Connect Account</button>
+                        </div>
+                    </div>
+
+                    <!-- Asana -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Asana</h3>
+                                <p class="card-description">Work management</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <button class="btn btn-outline w-full text-center justify-center">Connect Account</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Development Section -->
+            <section id="development" class="section section-content hidden">
+                <header class="section-header mb-4">
+                    <h1>Development</h1>
+                    <p class="section-description">Code repository permissions and actions.</p>
+                </header>
+                
+                <div class="component-grid">
+                    <!-- GitHub -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">GitHub Integration</h3>
+                                <p class="card-description">Code access and PR management</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Readable Repositories</label>
+                                <textarea class="input" style="min-height: 80px;" placeholder="owner/repo-name&#10;owner/another-repo"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="label">Write Access (Branch/PR)</label>
+                                <textarea class="input" style="min-height: 80px;" placeholder="owner/repo-name"></textarea>
+                                <p class="form-hint">Repos where the bot can create branches and open Pull Requests.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitLab -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">GitLab</h3>
+                                <p class="card-description">DevOps platform</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <p class="text-xs text-muted mb-4">Uses same configuration logic as GitHub.</p>
+                            <button class="btn btn-outline w-full text-center justify-center">Configure GitLab</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Knowledge & Files Section -->
+            <section id="knowledge" class="section section-content hidden">
+                <header class="section-header mb-4">
+                    <h1>Knowledge & Files</h1>
+                    <p class="section-description">Documentation and file system access.</p>
+                </header>
+
+                <div class="component-grid">
+                    <!-- Notion -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Notion</h3>
+                                <p class="card-description">Workspace integration</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Team Space</label>
+                                <input type="text" class="input" value="Engineering">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Allowed Pages</label>
+                                <input type="text" class="input" placeholder="Page IDs or regex...">
+                            </div>
+                            <div class="flex flex-col gap-2 mt-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="label" style="margin:0;">Allow Setup/Add</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="switch-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="separator"></div>
+                                <div class="flex justify-between items-center">
+                                    <span class="label" style="margin:0;">Allow Deletion</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="switch-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Local File System -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">File System</h3>
+                                <p class="card-description">Local storage access</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked disabled>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <p class="text-sm text-muted mb-4">
+                                The AI uses a sandboxed personal file system. No direct damage to user files is possible.
+                            </p>
+                            <div class="flex items-center gap-2">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <span class="text-sm" style="color: var(--success);">System Secure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Tools Section -->
+             <section id="tools" class="section section-content hidden">
+                <header class="section-header mb-4">
+                    <h1>Tools & Search</h1>
+                    <p class="section-description">External capabilities and utilities.</p>
+                </header>
+
+                <div class="component-grid">
+                    <!-- Internet Search -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Internet Access</h3>
+                                <p class="card-description">Web browsing capabilities</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Search Provider</label>
+                                <div class="flex gap-4">
+                                    <label class="radio-wrapper">
+                                        <input type="radio" name="search" class="radio" checked>
+                                        <span>Google</span>
+                                    </label>
+                                    <label class="radio-wrapper">
+                                        <input type="radio" name="search" class="radio">
+                                        <span>Bing</span>
+                                    </label>
+                                    <label class="radio-wrapper">
+                                        <input type="radio" name="search" class="radio">
+                                        <span>DuckDuckGo</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="label">Blacklisted Sites</label>
+                                <textarea class="input" placeholder="example.com, malicious-site.net"></textarea>
+                            </div>
+
+                            <div class="flex items-center gap-2 mt-4">
+                                <div class="alert alert-info w-full" style="background: var(--secondary); border: 1px solid var(--border);">
+                                    <div class="alert-content">
+                                        <p class="alert-title">Safety Mode Active</p>
+                                        <p class="alert-description">Suspicious downloads are automatically blocked.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Generation -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Image Generation</h3>
+                                <p class="card-description">Create visual content</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                            <p class="text-sm text-muted">Uses default model settings. No specific configurations available.</p>
+                        </div>
+                    </div>
+
+                    <!-- Summarize -->
+                    <div class="card">
+                        <div class="card-header flex justify-between items-center">
+                            <div>
+                                <h3 class="card-title">Session Summary</h3>
+                                <p class="card-description">Context retention</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        <div class="card-content">
+                             <p class="text-sm text-muted">Automatically summarizes interactions after 100+ functions or prolonged inactivity.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Settings UI Demo Section -->
+             <section id="settings" class="section section-content hidden">
+                <header class="section-header mb-4">
+                    <h1>Settings & UI Components</h1>
+                    <p class="section-description">A showcase of all available interface elements and controls.</p>
+                </header>
+
+                <div class="component-grid">
+                    
+                    <!-- Buttons -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <h3 class="card-title">Buttons</h3>
+                            <p class="card-description">Action triggers and interactive elements.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex flex-wrap gap-2">
+                                <button class="btn btn-primary">Primary Action</button>
+                                <button class="btn btn-secondary">Secondary</button>
+                                <button class="btn btn-ghost">Ghost Button</button>
+                                <button class="btn btn-primary" style="background: var(--destructive); color: white;">Destructive</button>
+                            </div>
+                            <div class="separator" style="height: 1px; background: var(--border); margin: 1.5rem 0;"></div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                <button class="btn btn-secondary btn-sm" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">Small</button>
+                                <button class="btn btn-secondary">Default</button>
+                                <button class="btn btn-secondary btn-lg" style="font-size: 1rem; padding: 0.75rem 1.5rem;">Large Button</button>
+                                <button class="btn btn-secondary btn-icon" style="width: 2.5rem; height: 2.5rem; padding: 0;">
+                                    <svg class="icon" viewBox="0 0 24 24" style="width: 1.25rem; height: 1.25rem; stroke: currentColor; fill: none; stroke-width: 2;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inputs -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Input Fields</h3>
+                            <p class="card-description">Text and number capture.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Username</label>
+                                <input type="text" class="input" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Email Address</label>
+                                <input type="email" class="input" placeholder="name@example.com">
+                                <p class="form-hint">We'll never share your email.</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Password</label>
+                                <input type="password" class="input" value="password123">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select & Dropdown -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Selection Controls</h3>
+                            <p class="card-description">Pickers and dropdowns.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Native Select</label>
+                                <select class="select">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="label">Custom Dropdown</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary w-full justify-between" onclick="toggleDropdown(this)">
+                                        Select Item
+                                        <svg class="icon" viewBox="0 0 24 24" style="width: 1rem; height: 1rem; stroke: currentColor; fill: none; stroke-width: 2;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </button>
+                                    <div class="dropdown-menu w-full">
+                                        <button class="dropdown-item">Profile</button>
+                                        <button class="dropdown-item">Settings</button>
+                                        <div class="dropdown-separator"></div>
+                                        <button class="dropdown-item" style="color: #ef4444;">Log out</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sliders & Range -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <h3 class="card-title">Sliders & Range</h3>
+                            <p class="card-description">Continuous value selection.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <div class="flex justify-between mb-2">
+                                    <label class="label mb-0">Volume Level</label>
+                                    <span class="text-xs text-muted" id="volume-value">75%</span>
+                                </div>
+                                <input type="range" class="slider" min="0" max="100" value="75" oninput="document.getElementById('volume-value').innerText = this.value + '%'">
+                            </div>
+
+                            <div class="form-group mt-6">
+                                <div class="flex justify-between mb-2">
+                                    <label class="label mb-0">Context Window Size</label>
+                                    <span class="text-xs text-muted" id="context-value">4096 tokens</span>
+                                </div>
+                                <input type="range" class="slider" min="1024" max="8192" step="1024" value="4096" oninput="document.getElementById('context-value').innerText = this.value + ' tokens'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checkbox & Radio -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Toggles & Checks</h3>
+                            <p class="card-description">Binary choices and options.</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="label">Notifications</label>
+                                <div class="flex flex-col gap-2 mt-2">
+                                    <label class="checkbox-wrapper">
+                                        <input type="checkbox" class="checkbox" checked>
+                                        <span class="text-sm">Email Alerts</span>
+                                    </label>
+                                    <label class="checkbox-wrapper">
+                                        <input type="checkbox" class="checkbox">
+                                        <span class="text-sm">Push Notifications</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="separator" style="height: 1px; background: var(--border); margin: 1rem 0;"></div>
+
+                            <div class="form-group">
+                                <label class="label">Theme</label>
+                                <div class="flex flex-col gap-2 mt-2">
+                                    <label class="radio-wrapper">
+                                        <input type="radio" name="theme" class="radio" checked>
+                                        <span class="text-sm">Dark Mode</span>
+                                    </label>
+                                    <label class="radio-wrapper">
+                                        <input type="radio" name="theme" class="radio">
+                                        <span class="text-sm">Light Mode</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
