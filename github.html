@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alto AI - GitHub Integration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --heading-font: 'Funnel Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --background: #09090b;
+            --foreground: #fafafa;
+            --card: #09090b;
+            --card-foreground: #fafafa;
+            --popover: #09090b;
+            --popover-foreground: #fafafa;
+            --primary: #fafafa;
+            --primary-foreground: #18181b;
+            --secondary: #27272a;
+            --secondary-foreground: #fafafa;
+            --muted: #27272a;
+            --muted-foreground: #a1a1aa;
+            --accent: #27272a;
+            --accent-foreground: #fafafa;
+            --destructive: #7f1d1d;
+            --destructive-foreground: #fafafa;
+            --border: #27272a;
+            --input: #27272a;
+            --ring: #d4d4d8;
+            --radius: 0.5rem;
+            --success: #22c55e;
+            --warning: #eab308;
+            --info: #3b82f6;
+        }
+
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Heading font (apply Funnel Display to headings across the site) */
+        h1, h2, h3, h4, h5, h6,
+        .section-title, .card-title, .modal-title, .alert-title, .function-card-title, .header h1 {
+            font-family: var(--heading-font);
+            letter-spacing: -0.02em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== Layout ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+
+        .section-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--muted-foreground);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .header h1 {
+            font-family: var(--heading-font);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--foreground), var(--muted-foreground));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .header p {
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.7s ease;
+        }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 2px;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background: rgba(250, 250, 250, 0.9);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(39, 39, 42, 0.8);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--foreground);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+        }
+
+        .btn-loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .btn-loading.btn-primary::after {
+            border-color: var(--primary-foreground);
+            border-right-color: transparent;
+        }
+
+        /* ===== Inputs & Textareas ===== */
+        .input, .textarea {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            background: var(--background);
+            border: 1px solid var(--input);
+            border-radius: var(--radius);
+            color: var(--foreground);
+            transition: all 0.2s ease;
+        }
+        
+        .textarea {
+            min-height: 100px;
+            resize: vertical;
+            padding: 0.75rem;
+        }
+
+        .input:focus, .textarea:focus {
+            outline: none;
+            border-color: var(--ring);
+            box-shadow: 0 0 0 2px rgba(212, 212, 216, 0.1);
+        }
+
+        .label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== Switch/Toggle ===== */
+        .switch {
+            position: relative;
+            width: 2.5rem;
+            height: 1.5rem;
+            background: var(--input);
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: inline-block;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+
+        .switch-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 1.25rem;
+            height: 1.25rem;
+            background: var(--foreground);
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .switch input:checked + .switch-slider {
+            transform: translateX(1rem);
+            background: var(--primary-foreground);
+        }
+
+        .switch:has(input:checked) {
+            background: var(--primary);
+        }
+        
+        .switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        /* ===== Cards ===== */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            padding: 1.5rem 1.5rem 0;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* ===== List Editor ===== */
+        .list-editor {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .list-editor-item {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .list-editor-item input {
+            flex: 1;
+        }
+        
+        .btn-icon-only {
+            padding: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* ===== Badge ===== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 9999px;
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+
+        .badge-default {
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+        }
+
+        /* ===== Toast ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 150;
+        }
+
+        .toast {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            min-width: 300px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 0.75rem;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .toast-success { border-left: 3px solid var(--success); }
+        .toast-error { border-left: 3px solid #dc2626; }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== Utility ===== */
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .text-muted { color: var(--muted-foreground); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-badge" id="activeBadge">Intializing...</div>
+        <h1>GitHub</h1>
+        <p>Integrate Alto with your repositories to manage code, issues, and pull requests.</p>
+    </header>
+
+    <div class="container">
+        <div class="mb-6 flex justify-between items-center">
+            <a href="index.html" class="btn btn-outline">&larr; Back to Tools</a>
+            <button id="saveButton" class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
+        </div>
+
+        <!-- Main Settings Form -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">General Settings</h2>
+                <p class="card-description">Configure the main behavior for the GitHub integration.</p>
+            </div>
+            <div class="card-content">
+                <div class="form-group switch-wrapper">
+                    <div>
+                        <span class="label">Enabled</span>
+                        <span class="form-hint">Allow Alto to use GitHub integration features.</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="github__enabled">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Permissions & Capabilities</h2>
+                <p class="card-description">Control what actions the agent is allowed to perform.</p>
+            </div>
+            <div class="card-content">
+                <div class="form-group switch-wrapper">
+                    <div>
+                        <span class="label">Create Branches</span>
+                        <span class="form-hint">Allow the agent to create new branches in allowed repositories.</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="github.allow_create_branches">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="form-group switch-wrapper">
+                    <div>
+                        <span class="label">Open Pull Requests</span>
+                        <span class="form-hint">Allow the agent to open new pull requests.</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="github.allow_open_prs">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Access Control</h2>
+                <p class="card-description">Define which repositories and scopes are accessible.</p>
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label class="label">Allowed Repositories</label>
+                    <div id="editor-repos" class="list-editor"></div>
+                    <button type="button" class="btn btn-outline btn-sm mt-2" onclick="addListItem('editor-repos', '')">
+                        + Add Repository
+                    </button>
+                    <div class="form-hint">Enter full path (e.g. owner/repo).</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Permission Scopes</label>
+                    <div id="editor-perms" class="list-editor"></div>
+                    <button type="button" class="btn btn-outline btn-sm mt-2" onclick="addListItem('editor-perms', '')">
+                        + Add Scope
+                    </button>
+                    <div class="form-hint">Enter scope (e.g. repo, read:org).</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        const API_URL = 'https://api.alto-ai.tech';
+        const TOOL_ID = 'github';
+        
+        // Mock authentication for demo - strictly following FRONTEND-PLAN.md logic in spirit
+        // In a real app, we'd check localStorage/session for tokens.
+        // For this static page generation, we assume the user has a token or we mock it.
+        const token = localStorage.getItem('access_token');
+
+        // Elements
+        const saveBtn = document.getElementById('saveButton');
+        const activeBadge = document.getElementById('activeBadge');
+        
+        // Fields to manage
+        const fields = [
+            { id: 'github__enabled', type: 'bool' },
+            { id: 'github.allow_create_branches', type: 'bool' },
+            { id: 'github.allow_open_prs', type: 'bool' }
+            // Lists are managed separately now
+        ];
+
+        async function init() {
+            if (!token && window.location.pathname !== '/login') {
+                // Redirect logic as per plan, but commented out for static dev
+                // window.location.href = '/login'; 
+                console.log('No token found - normally would redirect to login');
+            }
+
+            try {
+                await loadSettings();
+            } catch (error) {
+                showToast('Error loading settings', 'error');
+                console.error(error);
+            }
+        }
+
+        async function loadSettings() {
+            // In a real scenario:
+            // const response = await fetch(`${API_URL}/tools/${TOOL_ID}`, {
+            //     headers: { 'Authorization': `Bearer ${token}` }
+            // });
+            // const data = await response.json();
+            
+            // MOCK DATA for display purposes
+            const data = {
+                id: 'github',
+                active: true,
+                settings: {
+                    'github__enabled': true,
+                    'github.allow_create_branches': true,
+                    'github.allow_open_prs': false,
+                    'github.allowed_repos': ['alto-ai/frontend', 'alto-ai/backend'],
+                    'github.permissions': ['repo', 'read:org']
+                }
+            };
+
+            // Update Header Badge
+            updateActiveBadge(data.active);
+
+            // Populate Fields
+            fields.forEach(field => {
+                const el = document.getElementById(field.id);
+                const value = data.settings[field.id];
+
+                if (!el) return;
+
+                if (field.type === 'bool') {
+                    el.checked = !!value;
+                } else {
+                    el.value = value || '';
+                }
+            });
+
+            // Populate List Editors
+            populateListEditor('editor-repos', data.settings['github.allowed_repos'] || []);
+            populateListEditor('editor-perms', data.settings['github.permissions'] || []);
+        }
+
+        function populateListEditor(containerId, items) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // Clear
+            if (Array.isArray(items)) {
+                items.forEach(item => addListItem(containerId, item));
+            }
+        }
+
+        function addListItem(containerId, value = '') {
+            const container = document.getElementById(containerId);
+            const row = document.createElement('div');
+            row.className = 'list-editor-item';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'input';
+            input.value = value;
+            input.placeholder = containerId === 'editor-repos' ? 'owner/repo' : 'scope';
+
+                        const removeBtn = document.createElement('button');
+                        removeBtn.type = 'button'; // Prevent form submit
+                        removeBtn.className = 'btn btn-outline btn-icon-only';
+                        removeBtn.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
+                                    <path d="M7.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M10 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M12.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M3.5 5.5H16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M5.5 5.5V16.5C5.5 17.0523 5.94772 17.5 6.5 17.5H13.5C14.0523 17.5 14.5 17.0523 14.5 16.5V5.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5Z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>`;
+                        removeBtn.onclick = () => row.remove();
+
+                        row.appendChild(input);
+                        row.appendChild(removeBtn);
+                        container.appendChild(row);
+        }
+
+        function getListValues(containerId) {
+            const container = document.getElementById(containerId);
+            const inputs = container.querySelectorAll('input');
+            const values = [];
+            inputs.forEach(input => {
+                if (input.value.trim().length > 0) {
+                    values.push(input.value.trim());
+                }
+            });
+            return values;
+        }
+
+        async function saveSettings() {
+            saveBtn.classList.add('btn-loading');
+            saveBtn.disabled = true;
+
+            const payload = {};
+            fields.forEach(field => {
+                const el = document.getElementById(field.id);
+                if (!el) return;
+
+                if (field.type === 'bool') {
+                    payload[field.id] = el.checked;
+                } else {
+                    payload[field.id] = el.value;
+                }
+            });
+
+            // Add List Values
+            payload['github.allowed_repos'] = getListValues('editor-repos');
+            payload['github.permissions'] = getListValues('editor-perms');
+
+            console.log('Saving payload:', payload);
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // await fetch calls...
+                saveBtn.classList.remove('btn-loading');
+                saveBtn.disabled = false;
+                showToast('Settings saved successfully', 'success');
+                // Refresh active status (simulated)
+                updateActiveBadge(payload['github__enabled']); 
+            }, 800);
+        }
+
+        function updateActiveBadge(isActive) {
+            if (isActive) {
+                activeBadge.className = 'header-badge badge-success';
+                activeBadge.textContent = 'Active';
+                activeBadge.style.background = 'rgba(34, 197, 94, 0.2)';
+                activeBadge.style.color = '#22c55e';
+            } else {
+                activeBadge.className = 'header-badge badge-default';
+                activeBadge.textContent = 'Inactive';
+                activeBadge.style.background = 'var(--secondary)';
+                activeBadge.style.color = 'var(--muted-foreground)';
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <div class="toast-title">${type === 'error' ? 'Error' : 'Success'}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

@@ -611,7 +611,76 @@
             gap: 0.5rem;
         }
 
+        /* ===== List Editor ===== */
+        .list-editor {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .list-editor-item {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .list-editor-item input {
+            flex: 1;
+        }
+
+        .btn-icon-only {
+            padding: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
         /* ===== Badge ===== */
+            <!-- List Editor Example -->
+            <section class="section">
+                <div class="section-title">List Editor (with Trash Icon)</div>
+                <div class="section-description">A list input where each item is a single input box, removable with a trash icon.</div>
+                <div class="component-card" style="max-width: 500px;">
+                    <div class="list-editor" id="demo-list-editor">
+                        <div class="list-editor-item">
+                            <input class="input" type="text" value="example/path" placeholder="Type something...">
+                            <button type="button" class="btn btn-outline btn-icon-only" onclick="this.parentElement.remove()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
+                                  <path d="M7.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                  <path d="M10 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                  <path d="M12.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                  <path d="M3.5 5.5H16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                  <path d="M5.5 5.5V16.5C5.5 17.0523 5.94772 17.5 6.5 17.5H13.5C14.0523 17.5 14.5 17.0523 14.5 16.5V5.5" stroke="currentColor" stroke-width="1.5"/>
+                                  <path d="M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5Z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm mt-2" onclick="addDemoListItem()">+ Add Item</button>
+                </div>
+                <script>
+                function addDemoListItem() {
+                    const container = document.getElementById('demo-list-editor');
+                    const row = document.createElement('div');
+                    row.className = 'list-editor-item';
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'input';
+                    input.placeholder = 'Type something...';
+                    const removeBtn = document.createElement('button');
+                    removeBtn.type = 'button';
+                    removeBtn.className = 'btn btn-outline btn-icon-only';
+                    removeBtn.innerHTML = `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" class=\"icon\"><path d=\"M7.5 9.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M10 9.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M12.5 9.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M3.5 5.5H16.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M5.5 5.5V16.5C5.5 17.0523 5.94772 17.5 6.5 17.5H13.5C14.0523 17.5 14.5 17.0523 14.5 16.5V5.5\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg>`;
+                    removeBtn.onclick = () => row.remove();
+                    row.appendChild(input);
+                    row.appendChild(removeBtn);
+                    container.appendChild(row);
+                }
+                </script>
+            </section>
         .badge {
             display: inline-flex;
             align-items: center;
