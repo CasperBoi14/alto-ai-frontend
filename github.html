@@ -8,11 +8,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-title">Integrations</div>
+        <nav class="sidebar-nav">
+            <a href="github.html" class="nav-item active">GitHub</a>
+            <a href="asana.html" class="nav-item">Asana</a>
+            <a href="slack.html" class="nav-item">Slack</a>
+            <a href="gitlab.html" class="nav-item">GitLab</a>
+            <a href="linear.html" class="nav-item">Linear</a>
+            <a href="trello.html" class="nav-item">Trello</a>
+            <a href="notion.html" class="nav-item">Notion</a>
+            <a href="design-system.html" class="nav-item">Design System</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header">
         <div class="header-badge" id="activeBadge">Intializing...</div>
         <h1>GitHub</h1>
         <p>Integrate Alto with your repositories to manage code, issues, and pull requests.</p>
@@ -300,5 +316,6 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', init);
     </script>
+    </div>
 </body>
 </html>

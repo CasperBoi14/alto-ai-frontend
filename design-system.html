@@ -10,14 +10,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <span class="header-badge">Design System v1.0</span>
-        <h1>Alto AI Design System</h1>
-        <p>Unified CSS styling for all Alto AI integration pages. All pages now use the centralized styles.css file.</p>
-    </header>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-title">Integrations</div>
+        <nav class="sidebar-nav">
+            <a href="github.html" class="nav-item">GitHub</a>
+            <a href="asana.html" class="nav-item">Asana</a>
+            <a href="slack.html" class="nav-item">Slack</a>
+            <a href="gitlab.html" class="nav-item">GitLab</a>
+            <a href="linear.html" class="nav-item">Linear</a>
+            <a href="trello.html" class="nav-item">Trello</a>
+            <a href="notion.html" class="nav-item">Notion</a>
+            <a href="design-system.html" class="nav-item active">Design System</a>
+        </nav>
+    </aside>
 
-    <div class="container">
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <span class="header-badge">Design System v1.0</span>
+            <h1>Alto AI Design System</h1>
+            <p>Unified CSS styling for all Alto AI integration pages. All pages now use the centralized styles.css file.</p>
+        </header>
+
+        <div class="container">
         <!-- Overview Section -->
         <section class="section">
             <h2 class="section-title">Design System Overview</h2>
@@ -192,6 +209,7 @@
                 </div>
             </div>
         </section>
+    </div>
     </div>
 </body>
 </html>
