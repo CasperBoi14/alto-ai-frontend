@@ -145,9 +145,10 @@ h1, h2, h3, h4, h5, h6,
 
 /* ===== Layout ===== */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     padding: 2rem;
+    width: 100%;
 }
 
 .section {
@@ -175,7 +176,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* ===== Header ===== */
 .header {
-    text-align: center;
+    text-align: left;
     padding: 4rem 2rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 3rem;
@@ -207,7 +208,7 @@ h1, h2, h3, h4, h5, h6,
 .header p {
     color: var(--muted-foreground);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
     animation: fadeInUp 0.7s ease;
 }
 
