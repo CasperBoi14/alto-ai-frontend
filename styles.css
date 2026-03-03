@@ -421,6 +421,11 @@ h1, h2, h3, h4, h5, h6,
     align-items: center;
 }
 
+.quick-start-links {
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
 .list-editor-item input {
     flex: 1;
 }
