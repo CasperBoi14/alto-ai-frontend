@@ -1,65 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Discord Integration</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alto AI - Discord Integration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-		<!-- Sidebar Navigation -->
-		<aside class="sidebar">
-				<div class="sidebar-title">Integrations</div>
-				<nav class="sidebar-nav">
-						<a href="github.html" class="nav-item">GitHub</a>
-						<a href="asana.html" class="nav-item">Asana</a>
-						<a href="slack.html" class="nav-item">Slack</a>
-						<a href="gitlab.html" class="nav-item">GitLab</a>
-						<a href="linear.html" class="nav-item">Linear</a>
-						<a href="trello.html" class="nav-item">Trello</a>
-						<a href="notion.html" class="nav-item">Notion</a>
-						<a href="design-system.html" class="nav-item">Design System</a>
-						<a href="discord.html" class="nav-item active">Discord</a>
-				</nav>
-		</aside>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-title">Integrations</div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="github.html" class="nav-item">GitHub</a>
+            <a href="asana.html" class="nav-item">Asana</a>
+            <a href="slack.html" class="nav-item">Slack</a>
+            <a href="gitlab.html" class="nav-item">GitLab</a>
+            <a href="linear.html" class="nav-item">Linear</a>
+            <a href="trello.html" class="nav-item">Trello</a>
+            <a href="notion.html" class="nav-item">Notion</a>
+            <a href="discord.html" class="nav-item active">Discord</a>
+            <a href="design-system.html" class="nav-item">Design System</a>
+        </nav>
+    </aside>
 
-		<!-- Main Content -->
-		<div class="main-wrapper">
-			<header class="header">
-				<div class="header-badge badge-success">Active</div>
-				<h1>Discord</h1>
-				<p>Beheer berichten, kanalen en notificaties in Discord met Alto.</p>
-			</header>
-			<div class="container">
-				<div class="card">
-					<div class="card-header">
-						<h2 class="card-title">Discord Instellingen</h2>
-						<p class="card-description">Configureer welke servers en kanalen toegankelijk zijn.</p>
-					</div>
-					<div class="card-content">
-						<form>
-							<div class="form-group">
-								<label for="serverSelect">Server</label>
-								<select id="serverSelect" name="serverSelect">
-									<option value="">Selecteer een server...</option>
-									<!-- Dynamisch servers toevoegen -->
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="channelSelect">Kanaal</label>
-								<select id="channelSelect" name="channelSelect">
-									<option value="">Selecteer een kanaal...</option>
-									<!-- Dynamisch kanalen toevoegen -->
-								</select>
-							</div>
-							<button type="submit" class="btn btn-primary">Opslaan</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge" id="activeBadge">Active</div>
+            <h1>Discord</h1>
+            <p>Manage messages, channels, and notifications in Discord with Alto.</p>
+        </header>
+
+        <div class="container">
+            <div class="mb-6 flex justify-between items-center" style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                <a href="index.html" class="btn btn-outline">&larr; Back to Tools</a>
+                <button id="saveButton" class="btn btn-primary" onclick="alert('Settings saved!')">Save Changes</button>
+            </div>
+
+            <!-- Main Settings Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Discord Settings</h2>
+                    <p class="card-description">Configure which servers and channels are accessible.</p>
+                </div>
+                <div class="card-content">
+                    <form>
+                        <div class="form-group">
+                            <label class="label" for="serverSelect">Server</label>
+                            <select id="serverSelect" name="serverSelect" class="input">
+                                <option value="">Select a server...</option>
+                                <!-- Dynamically add servers -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="channelSelect">Channel</label>
+                            <select id="channelSelect" name="channelSelect" class="input">
+                                <option value="">Select a channel...</option>
+                                <!-- Dynamically add channels -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
