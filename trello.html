@@ -35,44 +35,61 @@
     <p>Beheer kaarten, lijsten en borden direct vanuit Alto.</p>
   </header>
   <div class="container">
+    <div class="mb-6 flex justify-between items-center" style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <a href="index.html" class="btn btn-outline">&larr; Back to Tools</a>
+        <button id="saveButton" class="btn btn-primary" onclick="alert('Settings saved!')">Save Changes</button>
+    </div>
+
     <div class="card">
-      <div class="card-header">
-        <h2 class="card-title">Trello Instellingen</h2>
-        <p class="card-description">Configureer welke borden, lijsten en acties beschikbaar zijn.</p>
-      </div>
-      <div class="card-content">
-        <div class="form-group">
-          <label class="label">Toegestane borden</label>
-          <div class="list-editor" id="trello-boards">
-            <div class="list-editor-item">
-              <input class="input" type="text" value="Voorbeeld Bord" placeholder="Bordnaam">
-              <button type="button" class="btn btn-outline btn-icon-only" onclick="this.parentElement.remove()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon"><path d="M7.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3.5 5.5H16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5.5 5.5V16.5C5.5 17.0523 5.94772 17.5 6.5 17.5H13.5C14.0523 17.5 14.5 17.0523 14.5 16.5V5.5" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
-              </button>
-            </div>
-          </div>
-          <button type="button" class="btn btn-outline btn-sm mt-2" onclick="addTrelloBoard()">+ Bord toevoegen</button>
+        <div class="card-header">
+            <h2 class="card-title">Trello Settings</h2>
+            <p class="card-description">Configure the Trello integration settings.</p>
         </div>
-        <script>
-        function addTrelloBoard() {
-          const container = document.getElementById('trello-boards');
-          const row = document.createElement('div');
-          row.className = 'list-editor-item';
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.className = 'input';
-          input.placeholder = 'Bordnaam';
-          const removeBtn = document.createElement('button');
-          removeBtn.type = 'button';
-          removeBtn.className = 'btn btn-outline btn-icon-only';
-          removeBtn.innerHTML = `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" class=\"icon\"><path d=\"M7.5 9.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M10 9.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M12.5 9.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M3.5 5.5H16.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M5.5 5.5V16.5C5.5 17.0523 5.94772 17.5 6.5 17.5H13.5C14.0523 17.5 14.5 17.0523 14.5 16.5V5.5\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg>`;
-          removeBtn.onclick = () => row.remove();
-          row.appendChild(input);
-          row.appendChild(removeBtn);
-          container.appendChild(row);
-        }
-        </script>
-      </div>
+        <div class="card-content">
+            <div class="form-group">
+                <label class="label">Allowed Boards (ID: trello.boards)</label>
+                <textarea class="textarea" rows="3" placeholder="Enter board names or IDs, one per line"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="label">Lists Configuration (ID: trello.lists_by_board)</label>
+                <textarea class="textarea" rows="4" placeholder='{"BoardName": ["List1", "List2"]}'></textarea>
+                <p class="form-hint">JSON format or key-value pairs recommended.</p>
+            </div>
+            <div class="form-group">
+                <label class="label">Default Labels (ID: trello.default_labels)</label>
+                <textarea class="textarea" rows="2" placeholder="List allowed labels"></textarea>
+            </div>
+            
+            <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <div>
+                     <span class="label" style="margin-bottom: 0;">Allow Delete (ID: trello.allow_delete)</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+
+             <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <div>
+                     <span class="label" style="margin-bottom: 0;">Allow Edit (ID: trello.allow_edit)</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+
+             <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <div>
+                     <span class="label" style="margin-bottom: 0;">Allow Create (ID: trello.allow_create)</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+        </div>
     </div>
   </div>
     </div>

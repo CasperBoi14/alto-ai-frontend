@@ -37,287 +37,51 @@
     </header>
 
     <div class="container">
-        <div class="mb-6 flex justify-between items-center">
+        <div class="mb-6 flex justify-between items-center" style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="btn btn-outline">&larr; Back to Tools</a>
-            <button id="saveButton" class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
-        </div>
-
-        <!-- Main Settings Form -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">General Settings</h2>
-                <p class="card-description">Configure the main behavior for the GitHub integration.</p>
-            </div>
-            <div class="card-content">
-                <div class="form-group switch-wrapper">
-                    <div>
-                        <span class="label">Enabled</span>
-                        <span class="form-hint">Allow Alto to use GitHub integration features.</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="github__enabled">
-                        <span class="switch-slider"></span>
-                    </label>
-                </div>
-            </div>
+            <button id="saveButton" class="btn btn-primary" onclick="alert('Settings saved!')">Save Changes</button>
         </div>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Permissions & Capabilities</h2>
-                <p class="card-description">Control what actions the agent is allowed to perform.</p>
-            </div>
-            <div class="card-content">
-                <div class="form-group switch-wrapper">
-                    <div>
-                        <span class="label">Create Branches</span>
-                        <span class="form-hint">Allow the agent to create new branches in allowed repositories.</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="github.allow_create_branches">
-                        <span class="switch-slider"></span>
-                    </label>
-                </div>
-
-                <div class="form-group switch-wrapper">
-                    <div>
-                        <span class="label">Open Pull Requests</span>
-                        <span class="form-hint">Allow the agent to open new pull requests.</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="github.allow_open_prs">
-                        <span class="switch-slider"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">Access Control</h2>
-                <p class="card-description">Define which repositories and scopes are accessible.</p>
+                <h2 class="card-title">GitHub Settings</h2>
+                <p class="card-description">Configure the GitHub integration settings.</p>
             </div>
             <div class="card-content">
                 <div class="form-group">
-                    <label class="label">Allowed Repositories</label>
-                    <div id="editor-repos" class="list-editor"></div>
-                    <button type="button" class="btn btn-outline btn-sm mt-2" onclick="addListItem('editor-repos', '')">
-                        + Add Repository
-                    </button>
-                    <div class="form-hint">Enter full path (e.g. owner/repo).</div>
+                    <label class="label">Allowed Repositories (ID: github.allowed_repos)</label>
+                    <textarea class="textarea" rows="4" placeholder="owner/repo, one per line"></textarea>
+                </div>
+                
+                 <div class="form-group">
+                    <label class="label">Permissions Scope (ID: github.permissions)</label>
+                    <textarea class="textarea" rows="2" placeholder="e.g. repo, read:org, separate by comma"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label class="label">Permission Scopes</label>
-                    <div id="editor-perms" class="list-editor"></div>
-                    <button type="button" class="btn btn-outline btn-sm mt-2" onclick="addListItem('editor-perms', '')">
-                        + Add Scope
-                    </button>
-                    <div class="form-hint">Enter scope (e.g. repo, read:org).</div>
+                <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                    <div>
+                         <span class="label" style="margin-bottom: 0;">Allow Create Branches (ID: github.allow_create_branches)</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                    <div>
+                         <span class="label" style="margin-bottom: 0;">Allow Open PRs (ID: github.allow_open_prs)</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="switch-slider"></span>
+                    </label>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
 
-    <script>
-        const API_URL = 'https://api.alto-ai.tech';
-        const TOOL_ID = 'github';
-        
-        // Mock authentication for demo - strictly following FRONTEND-PLAN.md logic in spirit
-        // In a real app, we'd check localStorage/session for tokens.
-        // For this static page generation, we assume the user has a token or we mock it.
-        const token = localStorage.getItem('access_token');
-
-        // Elements
-        const saveBtn = document.getElementById('saveButton');
-        const activeBadge = document.getElementById('activeBadge');
-        
-        // Fields to manage
-        const fields = [
-            { id: 'github__enabled', type: 'bool' },
-            { id: 'github.allow_create_branches', type: 'bool' },
-            { id: 'github.allow_open_prs', type: 'bool' }
-            // Lists are managed separately now
-        ];
-
-        async function init() {
-            if (!token && window.location.pathname !== '/login') {
-                // Redirect logic as per plan, but commented out for static dev
-                // window.location.href = '/login'; 
-                console.log('No token found - normally would redirect to login');
-            }
-
-            try {
-                await loadSettings();
-            } catch (error) {
-                showToast('Error loading settings', 'error');
-                console.error(error);
-            }
-        }
-
-        async function loadSettings() {
-            // In a real scenario:
-            // const response = await fetch(`${API_URL}/tools/${TOOL_ID}`, {
-            //     headers: { 'Authorization': `Bearer ${token}` }
-            // });
-            // const data = await response.json();
-            
-            // MOCK DATA for display purposes
-            const data = {
-                id: 'github',
-                active: true,
-                settings: {
-                    'github__enabled': true,
-                    'github.allow_create_branches': true,
-                    'github.allow_open_prs': false,
-                    'github.allowed_repos': ['alto-ai/frontend', 'alto-ai/backend'],
-                    'github.permissions': ['repo', 'read:org']
-                }
-            };
-
-            // Update Header Badge
-            updateActiveBadge(data.active);
-
-            // Populate Fields
-            fields.forEach(field => {
-                const el = document.getElementById(field.id);
-                const value = data.settings[field.id];
-
-                if (!el) return;
-
-                if (field.type === 'bool') {
-                    el.checked = !!value;
-                } else {
-                    el.value = value || '';
-                }
-            });
-
-            // Populate List Editors
-            populateListEditor('editor-repos', data.settings['github.allowed_repos'] || []);
-            populateListEditor('editor-perms', data.settings['github.permissions'] || []);
-        }
-
-        function populateListEditor(containerId, items) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = ''; // Clear
-            if (Array.isArray(items)) {
-                items.forEach(item => addListItem(containerId, item));
-            }
-        }
-
-        function addListItem(containerId, value = '') {
-            const container = document.getElementById(containerId);
-            const row = document.createElement('div');
-            row.className = 'list-editor-item';
-            
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'input';
-            input.value = value;
-            input.placeholder = containerId === 'editor-repos' ? 'owner/repo' : 'scope';
-
-                        const removeBtn = document.createElement('button');
-                        removeBtn.type = 'button'; // Prevent form submit
-                        removeBtn.className = 'btn btn-outline btn-icon-only';
-                        removeBtn.innerHTML = `
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
-                                    <path d="M7.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M10 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M12.5 9.5V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M3.5 5.5H16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <path d="M5.5 5.5V16.5C5.5 17.0523 5.94772 17.5 6.5 17.5H13.5C14.0523 17.5 14.5 17.0523 14.5 16.5V5.5" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5Z" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>`;
-                        removeBtn.onclick = () => row.remove();
-
-                        row.appendChild(input);
-                        row.appendChild(removeBtn);
-                        container.appendChild(row);
-        }
-
-        function getListValues(containerId) {
-            const container = document.getElementById(containerId);
-            const inputs = container.querySelectorAll('input');
-            const values = [];
-            inputs.forEach(input => {
-                if (input.value.trim().length > 0) {
-                    values.push(input.value.trim());
-                }
-            });
-            return values;
-        }
-
-        async function saveSettings() {
-            saveBtn.classList.add('btn-loading');
-            saveBtn.disabled = true;
-
-            const payload = {};
-            fields.forEach(field => {
-                const el = document.getElementById(field.id);
-                if (!el) return;
-
-                if (field.type === 'bool') {
-                    payload[field.id] = el.checked;
-                } else {
-                    payload[field.id] = el.value;
-                }
-            });
-
-            // Add List Values
-            payload['github.allowed_repos'] = getListValues('editor-repos');
-            payload['github.permissions'] = getListValues('editor-perms');
-
-            console.log('Saving payload:', payload);
-
-            // Simulate API call delay
-            setTimeout(() => {
-                // await fetch calls...
-                saveBtn.classList.remove('btn-loading');
-                saveBtn.disabled = false;
-                showToast('Settings saved successfully', 'success');
-                // Refresh active status (simulated)
-                updateActiveBadge(payload['github__enabled']); 
-            }, 800);
-        }
-
-        function updateActiveBadge(isActive) {
-            if (isActive) {
-                activeBadge.className = 'header-badge badge-success';
-                activeBadge.textContent = 'Active';
-                activeBadge.style.background = 'rgba(34, 197, 94, 0.2)';
-                activeBadge.style.color = '#22c55e';
-            } else {
-                activeBadge.className = 'header-badge badge-default';
-                activeBadge.textContent = 'Inactive';
-                activeBadge.style.background = 'var(--secondary)';
-                activeBadge.style.color = 'var(--muted-foreground)';
-            }
-        }
-
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <div class="toast-title">${type === 'error' ? 'Error' : 'Success'}</div>
-                    <div class="toast-message">${message}</div>
-                </div>
-            `;
-            container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
     </div>
 </body>
 </html>
