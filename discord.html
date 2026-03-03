@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Discord Integration</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+		<!-- Sidebar Navigation -->
+		<aside class="sidebar">
+				<div class="sidebar-title">Integrations</div>
+				<nav class="sidebar-nav">
+						<a href="github.html" class="nav-item">GitHub</a>
+						<a href="asana.html" class="nav-item">Asana</a>
+						<a href="slack.html" class="nav-item">Slack</a>
+						<a href="gitlab.html" class="nav-item">GitLab</a>
+						<a href="linear.html" class="nav-item">Linear</a>
+						<a href="trello.html" class="nav-item">Trello</a>
+						<a href="notion.html" class="nav-item">Notion</a>
+						<a href="design-system.html" class="nav-item">Design System</a>
+						<a href="discord.html" class="nav-item active">Discord</a>
+				</nav>
+		</aside>
+
+		<!-- Main Content -->
+		<div class="main-wrapper">
+			<header class="header">
+				<div class="header-badge badge-success">Active</div>
+				<h1>Discord</h1>
+				<p>Beheer berichten, kanalen en notificaties in Discord met Alto.</p>
+			</header>
+			<div class="container">
+				<div class="card">
+					<div class="card-header">
+						<h2 class="card-title">Discord Instellingen</h2>
+						<p class="card-description">Configureer welke servers en kanalen toegankelijk zijn.</p>
+					</div>
+					<div class="card-content">
+						<form>
+							<div class="form-group">
+								<label for="serverSelect">Server</label>
+								<select id="serverSelect" name="serverSelect">
+									<option value="">Selecteer een server...</option>
+									<!-- Dynamisch servers toevoegen -->
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="channelSelect">Kanaal</label>
+								<select id="channelSelect" name="channelSelect">
+									<option value="">Selecteer een kanaal...</option>
+									<!-- Dynamisch kanalen toevoegen -->
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Opslaan</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
