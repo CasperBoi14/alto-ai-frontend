@@ -23,11 +23,16 @@ export async function apiFetch(endpoint, options = {}) {
 
     const config = {
         ...options,
-        headers
+        headers,
+        mode: options.mode ?? 'cors',
     };
+
+    // Debugging helper: show the actual request made by the frontend
+    console.debug('apiFetch', { url, config });
 
     try {
         const response = await fetch(url, config);
+        console.debug('apiFetch response', { url, status: response.status });
         
         // Handle 401 Unauthorized
         if (response.status === 401) {
