@@ -1,6 +1,6 @@
 # FRONTEND-PLAN.md
 
-> **Console:** GitHub Pages | **API:** `https://api.alto-ai.tech`
+> **Console:** GitHub Pages | **API:** `http://89.99.206.174`
 
 ---
 
@@ -23,7 +23,7 @@
 
 A static console hosted on GitHub Pages. One admin user. No registration. Every page except login requires authentication.
 
-Talks **only** to `https://api.alto-ai.tech`. What it does:
+Talks **only** to `http://89.99.206.174`. What it does:
 - Manage integration settings and OAuth connections
 - Configure agent behaviour (personality, language, etc.)
 - View live server logs
