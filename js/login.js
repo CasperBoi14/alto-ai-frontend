@@ -39,7 +39,7 @@ if (loginForm) {
                 }
 
                 // Redirect to protected dashboard
-                window.location.href = 'index.html';
+                window.location.href = 'index';
             } else {
                 throw new Error('Ongeldige server response: Geen token ontvangen.');
             }

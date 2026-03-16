@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear token
             localStorage.removeItem('access_token');
             // Redirect to login
-            window.location.href = 'login.html';
+            window.location.href = 'login';
         });
     }
 });

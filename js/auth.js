@@ -28,8 +28,8 @@
 
     function redirectToLogin() {
         // Prevent redirect loop
-        if (!window.location.pathname.endsWith('login.html')) {
-            window.location.href = 'login.html';
+        if (!window.location.pathname.endsWith('login')) {
+            window.location.href = 'login';
         }
     }
 })();
