@@ -17,6 +17,8 @@
             background-color: #09090b;
         }
         .login-card {
+            position: relative;
+            z-index: 1;
             width: 100%;
             max-width: 400px;
             padding: 2rem;
@@ -82,6 +84,18 @@
             <button type="submit" class="btn btn-primary btn-full" id="loginButton">Inloggen</button>
         </form>
     </div>
+    <script src="js/ascii-ground.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AsciiGround.init({
+                mode: 'morph',
+                density: 1.1,
+                speed: 0.3,
+                color: 'rgba(203,213,225,0.24)',
+                chars: ' .:-=+*#%@',
+            });
+        });
+    </script>
     <script type="module" src="js/login.js"></script>
 </body>
 </html>

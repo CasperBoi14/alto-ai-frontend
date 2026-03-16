@@ -14,6 +14,7 @@
 	<aside class="sidebar">
 		<div class="sidebar-title">Alto AI</div>
 		<nav class="sidebar-nav">
+<<<<<<< Updated upstream
 			<a href="index" class="nav-item active">Home</a>
 			<a href="github" class="nav-item">GitHub</a>
 			<a href="asana" class="nav-item">Asana</a>
@@ -24,6 +25,17 @@
 			<a href="notion" class="nav-item">Notion</a>
 			<a href="discord" class="nav-item">Discord</a>
 			<a href="design-system" class="nav-item">Design System</a>
+=======
+			<a href="index.html" class="nav-item active">Home</a>
+			<a href="github.html" class="nav-item">GitHub</a>
+			<a href="asana.html" class="nav-item">Asana</a>
+			<a href="slack.html" class="nav-item">Slack</a>
+			<a href="gitlab.html" class="nav-item">GitLab</a>
+			<a href="linear.html" class="nav-item">Linear</a>
+			<a href="trello.html" class="nav-item">Trello</a>
+			<a href="notion.html" class="nav-item">Notion</a>
+			<a href="discord.html" class="nav-item">Discord</a>
+>>>>>>> Stashed changes
             <a href="#" id="logoutButton" class="nav-item" style="margin-top: auto; color: #ef4444;">Uitloggen</a>
 		</nav>
 	</aside>
@@ -58,6 +70,19 @@
 			</section>
 		</main>
 	</div>
+    <script src="js/ascii-ground.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AsciiGround.init({
+                mode: 'morph',
+                density: 1.0,
+                speed: 0.5,
+                color: 'rgba(203,213,225,0.3)',
+                chars: ' .:-=+*#%@',
+                scale: 1.0,
+            });
+        });
+    </script>
     <script type="module" src="js/tools.js"></script>
     <script src="js/logout.js"></script>
 </body>
