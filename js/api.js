@@ -39,8 +39,8 @@ export async function apiFetch(endpoint, options = {}) {
             console.warn('Unauthorized access. Redirecting to login.');
             localStorage.removeItem('access_token');
             // Avoid redirect loop if already on login page
-            if (!window.location.pathname.endsWith('login')) {
-                window.location.href = 'login';
+            if (!window.location.pathname.endsWith('login.html')) {
+                window.location.href = 'login.html';
             }
             // Return error object or throw to be caught by specific handlers (like login form)
             const errorData = await response.json().catch(() => ({}));

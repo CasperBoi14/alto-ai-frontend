@@ -42,14 +42,27 @@ if (saveButton) {
     saveButton.removeAttribute('onclick');
 }
 
-// Initialize placeholder values (optional fetch logic could go here)
-// e.g.
-/*
-async function loadSettings() {
+// Function to load Asana settings
+async function loadAsanaSettings() {
     try {
-        const toolData = await apiFetch('/tools/asana');
-        // populate form fields
-    } catch (e) { console.error(e); }
+        const response = await apiFetch('/tools/asana');
+        if (response && response.settings) {
+            const settings = response.settings;
+            
+            // Populate allowed workspaces
+            if (settings['asana.allowed_workspaces'] && Array.isArray(settings['asana.allowed_workspaces'])) {
+                allowedWorkspaces.value = settings['asana.allowed_workspaces'].join('\n');
+            }
+            
+            // Populate default assignee
+            if (settings['asana.default_assignee']) {
+                defaultAssignee.value = settings['asana.default_assignee'];
+            }
+        }
+    } catch (error) {
+        console.error('Error loading settings:', error);
+    }
 }
-loadSettings();
-*/
+
+// Call on load
+document.addEventListener('DOMContentLoaded', loadAsanaSettings);
