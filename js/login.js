@@ -29,9 +29,11 @@ if (loginForm) {
                 body: JSON.stringify({ username, password })
             });
 
-            // Assuming standard JWT response: { access_token: "..." }
-            if (data.access_token) {
-                localStorage.setItem('access_token', data.access_token);
+            // Handle token response (support both 'access_token' and 'token')
+            const token = data.access_token || data.token;
+
+            if (token) {
+                localStorage.setItem('access_token', token);
                 
                 // If refresh token exists, store it too
                 if (data.refresh_token) {
