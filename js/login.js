@@ -6,6 +6,20 @@ const passwordInput = document.getElementById('password');
 const errorMessage = document.getElementById('errorMessage');
 const loginButton = document.getElementById('loginButton');
 
+function setLoginError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+    loginButton.disabled = true;
+}
+
+// If the page is being opened via file://, most APIs will reject due to CORS/origin issues.
+// Show a clearer instruction instead of the generic "Unable to fetch".
+if (window.location.protocol === 'file:') {
+    setLoginError(
+        'Start een lokale webserver (bijv. `python -m http.server`) en open deze pagina via http://localhost om CORS-problemen te vermijden.'
+    );
+}
+
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();

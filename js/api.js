@@ -58,6 +58,15 @@ export async function apiFetch(endpoint, options = {}) {
         return await response.json();
     } catch (error) {
         console.error('API Request Failed:', error);
+
+        // Browser fetch errors often hide CORS/network issues as "Failed to fetch".
+        // Provide a clearer message in the UI so it's obvious when the problem is local (file://) or CORS.
+        if (error instanceof TypeError) {
+            throw new Error(
+                'Kan geen verbinding maken met de API. Controleer of je de site via http(s) serveert (niet file://) en dat de API CORS toestaat.'
+            );
+        }
+
         throw error;
     }
 }
